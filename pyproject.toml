@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "realrestorer-diffuser"
+version = "0.1.0"
+description = "Utilities and CLI for running RealRestorer through a diffusers-integrated pipeline."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "torch",
+  "torchvision",
+  "transformers",
+  "accelerate",
+  "safetensors",
+  "Pillow",
+  "numpy",
+  "opencv-python",
+  "scipy",
+  "scikit-image",
+  "omegaconf",
+  "timm",
+  "einops",
+  "huggingface_hub",
+]
+
+[project.scripts]
+realrestorer-diffuser-export = "RealRestorer.export_bundle:main"
+realrestorer-diffuser-infer = "RealRestorer.inference:main"
+realrestorer-diffuser-degrade = "degradation_pipeline.infer:main"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["RealRestorer*", "degradation_pipeline*"]
